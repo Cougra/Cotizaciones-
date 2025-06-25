@@ -459,12 +459,7 @@ let lastScroll = 0;
 const navbar = document.querySelector('nav');
 
 // Función para ocultar el menú
-function hideNavbar() {
-    navbar.classList.add('scroll-hide');
-    setTimeout(() => {
-        navbar.classList.remove('scroll-hide');
-    }, 1000); // Tiempo mínimo que permanecerá oculto (ms)
-}
+
 
 // Evento de scroll (comportamiento original)
 window.addEventListener('scroll', function() {
