@@ -1,358 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Miltonian&family=Monsieur+La+Doulaise&family=Train+One&display=swap" rel="stylesheet">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COUGRA - Servicio profesional de fotografía y video para capturar tus momentos especiales">
     <title>COUGRA - Fotografía y Video</title>
+    
+    <!-- Preload de fuentes para mejor performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Miltonian&family=Monsieur+La+Doulaise&family=Train+One&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Miltonian&family=Monsieur+La+Doulaise&family=Train+One&display=swap">
+    </noscript>
+    
+    <!-- Estilos críticos inline -->
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* Estilos críticos para renderizado inicial */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background-color: #f5f5f5; }
+        nav { background: #000; padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000; transition: transform 0.3s ease; }
+        nav.scroll-hide { transform: translateY(-100%); }
+        .menu { display: flex; justify-content: center; list-style: none; padding: 0; }
+        section { padding: 100px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        #inicio { padding-top: 80px; justify-content: center; }
+        img { max-width: 100%; height: auto; }
         
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* Menú de navegación */
-        nav {
-            background: #000;
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: transform 0.4s ease;
-        }
-        
-        nav.scroll-hide {
-            transform: translateY(-100%);
-        }
-        
-        .menu {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-        
-        .menu li {
-            position: relative;
-            margin: 0 20px;
-        }
-        
-        .menu li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 10px 15px;
-            display: block;
-        }
-        
-        .menu li a:hover {
-            background: #333;
-            border-radius: 4px;
-        }
-        
-        .submenu {
-            display: none;
-            position: absolute;
-            background: #000;
-            width: 200px;
-            top: 100%;
-            left: 0;
-            list-style: none;
-            border-radius: 0 0 4px 4px;
-            z-index: 1001;
-        }
-        
-        .menu li:hover .submenu {
-            display: block;
-        }
-        
-        .submenu li a {
-            padding: 10px;
-            text-align: left;
-        }
-        
-        /* Secciones */
-        section {
-            padding: 100px 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        #inicio { 
-            background: #f5f5f5;
-            padding-top: 80px;
-            justify-content: center;
-        }
-        
-        #servicios { 
-            background: #e8e8e8;
-            justify-content: flex-start;
-        }
-        
-        #contacto { 
-            background: #dedede;
-            justify-content: center;
-        }
-        
-        /* Logo */
-        .logo-inicio {
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .logo-inicio img {
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 200px;
-            height: auto;
-        }
-        
-        /* Textos */
-        .destacado2 {
-            font-family: 'Train One', cursive;
-            font-size: 4rem;
-            color: #2a2a2a;
-            margin-bottom: 1rem;
-        }
-        
-        .destacado {
-            font-family: 'Monsieur La Doulaise', cursive;
-            font-size: 3rem;
-            color: #2a2a2a;
-            margin-bottom: 2rem;
-        }
-        
-        h1, h2 {
-            margin: 1rem 0;
-        }
-        
-        p {
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-            text-align: center;
-        }
-        
-        hr {
-            width: 50px;
-            border: 1px solid #999;
-            margin: 2rem auto;
-        }
-        
-        /* Paquetes */
-        .paquetes-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .paquetes {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 2rem;
-        }
-
-        .paquete {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            padding: 30px;
-            width: 100%;
-            max-width: 350px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .paquete:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-        
-        .paquete h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .paquete h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .paquete ul {
-            margin-bottom: 1.5rem;
-            padding-left: 20px;
-        }
-        
-        .paquete li {
-            margin-bottom: 0.8rem;
-            position: relative;
-            list-style-type: none;
-            padding-left: 25px;
-        }
-        
-        .paquete li:before {
-            content: "•";
-            color: #d4af37;
-            position: absolute;
-            left: 0;
-        }
-        
-        .precio {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-        
-        /* Estilos específicos para paquetes */
-        .basico h2 {
-            color: #4a6fa5;
-        }
-        
-        .premiun {
-            border: 2px solid #d4af37;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .premiun h2 {
-            color: #d4af37;
-        }
-        
-        .premiun::after {
-            content: "POPULAR";
-            position: absolute;
-            top: 15px;
-            right: -30px;
-            background: #d4af37;
-            color: white;
-            padding: 5px 30px;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .platinum {
-            border: 2px solid #e5e4e2;
-            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .platinum h2 {
-            color: #e5e4e2;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        }
-        
-        .platinum::after {
-            content: "RECOMENDADO";
-            position: absolute;
-            top: 30px;
-            right: -35px;
-            background: #e5e4e2;
-            color: #333;
-            padding: 5px 30px;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        /* Contacto */
-        .info-contacto {
-            margin-top: 2rem;
-        }
-        
-        .info-contacto p {
-            margin-bottom: 1rem;
-        }
-        
-        /* Responsive */
+        /* Solo estilos móvil iniciales */
         @media (max-width: 768px) {
-            nav {
-                transition: transform 0.3s ease;
-            }
-            
-            body {
-                padding-top: 60px;
-            }
-            
-            .submenu {
-                display: none;
-                position: static;
-                width: 100%;
-                background: #333;
-            }
-            
-            .menu li {
-                position: relative;
-            }
-            
-            .menu > li > a {
-                padding: 15px;
-            }
-            
-            .menu li.active .submenu {
-                display: block;
-            }
-            
-            .destacado2 {
-                font-size: 2.5rem;
-            }
-            
-            .destacado {
-                font-size: 2rem;
-            }
-            
-            section {
-                padding: 80px 15px;
-            }
-            
-            .paquetes {
-                flex-direction: column;
-                align-items: center;
-            }
+            body { padding-top: 60px; }
+            .menu { flex-direction: column; align-items: center; }
+            .menu li { width: 100%; text-align: center; margin: 5px 0; }
+            section { padding: 80px 15px; }
         }
     </style>
+    
+    <!-- Cargar CSS no crítico de forma asíncrona -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 </head>
 <body>
-    <!-- Menú de navegación -->
-    <nav>
-        <ul class="menu">
-            <li><a href="#inicio">Inicio</a></li>
-            <li>
-                <a href="#servicios">Servicios</a>
-                <ul class="submenu">
-                    <li><a href="#XV">XV Años</a></li>
-                    <li><a href="#Boda">Bodas</a></li>
-                    <li><a href="#sesiones">Sesiones Individuales</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#contacto">Contacto</a>
-            </li>
-        </ul>
-    </nav>
+    <!-- Menú de navegación accesible -->
+    <header role="banner">
+        <nav aria-label="Navegación principal">
+            <ul class="menu" role="menubar">
+                <li role="none"><a href="#inicio" role="menuitem">Inicio</a></li>
+                <li role="none">
+                    <a href="#servicios" role="menuitem" aria-haspopup="true">Servicios</a>
+                    <ul class="submenu" role="menu">
+                        <li role="none"><a href="#XV" role="menuitem">XV Años</a></li>
+                        <li role="none"><a href="#Boda" role="menuitem">Bodas</a></li>
+                        <li role="none"><a href="#sesiones" role="menuitem">Sesiones Individuales</a></li>
+                    </ul>
+                </li>
+                <li role="none"><a href="#contacto" role="menuitem">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Sección Inicio -->
     <section id="inicio">
         <div class="logo-inicio">
-            <img src="Logo.jpg" alt="COUGRA Logo">
+            <img src="Logo.jpg" alt="COUGRA Logo" loading="lazy" width="200" height="200">
         </div>
         
         <h1><span class="destacado2">COUGRA</span></h1>
@@ -372,7 +80,7 @@
             
             <div class="paquetes">
                 <!-- Paquete Básico -->
-                <div class="paquete basico">
+                <article class="paquete basico">
                     <h2>BÁSICO</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -388,10 +96,10 @@
                     </ul>
                     
                     <div class="precio">$4,500</div>
-                </div>
+                </article>
                 
                 <!-- Paquete Premiun -->
-                <div class="paquete premiun">
+                <article class="paquete premiun">
                     <h2>PREMIUN</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -409,10 +117,10 @@
                     </ul>
                     
                     <div class="precio">$7,800</div>
-                </div>
+                </article>
                 
                 <!-- Paquete Platinum -->
-                <div class="paquete platinum">
+                <article class="paquete platinum">
                     <h2>PLATINUM</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -431,17 +139,17 @@
                     </ul>
                     
                     <div class="precio">$11,500</div>
-                </div>
+                </article>
             </div>
         </div>
 
-         <div class="paquetes-container" id="Boda">
+        <div class="paquetes-container" id="Boda">
             <h1>Nuestros Paquetes de Bodas</h1>
             <hr>
             
             <div class="paquetes">
                 <!-- Paquete Básico -->
-                <div class="paquete basico">
+                <article class="paquete basico">
                     <h2>BÁSICO</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -457,10 +165,10 @@
                     </ul>
                     
                     <div class="precio">$4,500</div>
-                </div>
+                </article>
                 
                 <!-- Paquete Premiun -->
-                <div class="paquete premiun">
+                <article class="paquete premiun">
                     <h2>PREMIUN</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -478,10 +186,10 @@
                     </ul>
                     
                     <div class="precio">$7,800</div>
-                </div>
+                </article>
                 
                 <!-- Paquete Platinum -->
-                <div class="paquete platinum">
+                <article class="paquete platinum">
                     <h2>PLATINUM</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -500,17 +208,17 @@
                     </ul>
                     
                     <div class="precio">$11,500</div>
-                </div>
+                </article>
             </div>
         </div>
 
-         <div class="paquetes-container" id="sesiones">
+        <div class="paquetes-container" id="sesiones">
             <h1>Nuestros Paquetes de Sesiones Individuales</h1>
             <hr>
             
             <div class="paquetes">
                 <!-- Paquete Básico -->
-                <div class="paquete basico">
+                <article class="paquete basico">
                     <h2>BÁSICO</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -526,10 +234,10 @@
                     </ul>
                     
                     <div class="precio">$4,500</div>
-                </div>
+                </article>
                 
                 <!-- Paquete Premiun -->
-                <div class="paquete premiun">
+                <article class="paquete premiun">
                     <h2>PREMIUN</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -547,10 +255,10 @@
                     </ul>
                     
                     <div class="precio">$7,800</div>
-                </div>
+                </article>
                 
                 <!-- Paquete Platinum -->
-                <div class="paquete platinum">
+                <article class="paquete platinum">
                     <h2>PLATINUM</h2>
                     <h3>Fotografía y Video</h3>
                     <ul>
@@ -569,10 +277,9 @@
                     </ul>
                     
                     <div class="precio">$11,500</div>
-                </div>
+                </article>
             </div>
         </div>
-
     </section>
 
     <!-- Sección Contacto -->
@@ -582,81 +289,91 @@
         
         <div class="info-contacto">
             <p>¡Contáctanos para reservar tu sesión o pedir un presupuesto!</p>
-            <p>Email: fotografiacougra@gmail.com</p>
-            <p>Teléfono: +52 961 235 1905</p>
+            <p>Email: <a href="mailto:fotografiacougra@gmail.com">fotografiacougra@gmail.com</a></p>
+            <p>Teléfono: <a href="tel:+529612351905">+52 961 235 1905</a></p>
         </div>
     </section>
 
- <script>
-// Control de visibilidad del menú
-let lastScroll = 0;
-const navbar = document.querySelector('nav');
-
-// Función para ocultar el menú
-
-
-// Evento de scroll (comportamiento original)
-window.addEventListener('scroll', function() {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        navbar.classList.remove('scroll-hide');
-        return;
-    }
-    
-    if (currentScroll < lastScroll) {
-        navbar.classList.remove('scroll-hide');
-    } else {
-        navbar.classList.add('scroll-hide');
-    }
-    
-    lastScroll = currentScroll;
-});
-
-// Solo ocultar al hacer clic en SUBMENÚS (no en items principales)
-document.querySelectorAll('.submenu a').forEach(subItem => {
-    subItem.addEventListener('click', function() {
-        hideNavbar();
-    });
-});
-
-// Manejo de submenús en móviles
-document.addEventListener('DOMContentLoaded', function() {
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-        document.querySelectorAll('.menu > li').forEach(item => {
-            const link = item.querySelector('a');
-            const submenu = item.querySelector('.submenu');
+    <!-- Archivo CSS separado (styles.css) -->
+ 
+    <!-- JavaScript optimizado -->
+    <script>
+        // Control de visibilidad del menú con mejor performance
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('nav');
+            const SCROLL_THRESHOLD = 10;
+            const SCROLL_DELAY = 10;
+            let lastScroll = 0;
+            let scrollTimeout;
             
-            if (submenu) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const isOpen = submenu.style.display === 'block';
+            // Manejo del scroll optimizado
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    const currentScroll = window.pageYOffset;
                     
-                    // Cerrar todos los submenús primero
-                    document.querySelectorAll('.submenu').forEach(sm => {
-                        sm.style.display = 'none';
-                    });
+                    if (currentScroll <= 0) {
+                        navbar.classList.remove('scroll-hide');
+                        return;
+                    }
                     
-                    // Abrir el submenú actual si estaba cerrado
-                    if (!isOpen) {
-                        submenu.style.display = 'block';
+                    if (Math.abs(currentScroll - lastScroll) > SCROLL_THRESHOLD) {
+                        if (currentScroll < lastScroll || currentScroll < 100) {
+                            navbar.classList.remove('scroll-hide');
+                        } else {
+                            navbar.classList.add('scroll-hide');
+                        }
+                        lastScroll = currentScroll;
+                    }
+                }, SCROLL_DELAY);
+            });
+            
+            // Manejo de submenús en móviles
+            function setupMobileMenu() {
+                if (window.innerWidth > 768) return;
+                
+                document.querySelectorAll('.menu > li').forEach(item => {
+                    const link = item.querySelector('a');
+                    const submenu = item.querySelector('.submenu');
+                    
+                    if (submenu) {
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const isOpen = submenu.style.display === 'block';
+                            
+                            // Cerrar todos los submenús primero
+                            document.querySelectorAll('.submenu').forEach(sm => {
+                                sm.style.display = 'none';
+                            });
+                            
+                            // Abrir el submenú actual si estaba cerrado
+                            if (!isOpen) {
+                                submenu.style.display = 'block';
+                                // Scroll suave al submenú
+                                submenu.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
+                        });
                     }
                 });
             }
-        });
-        
-        // Cerrar submenús al tocar fuera
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('nav')) {
-                document.querySelectorAll('.submenu').forEach(submenu => {
-                    submenu.style.display = 'none';
+            
+            // Inicializar menú móvil
+            setupMobileMenu();
+            
+            // Reconfigurar menú al cambiar tamaño de pantalla
+            window.addEventListener('resize', setupMobileMenu);
+            
+            // Lazy loading para imágenes (fallback para navegadores que no soportan loading="lazy")
+            if ('loading' in HTMLImageElement.prototype) {
+                const images = document.querySelectorAll('img[loading="lazy"]');
+                images.forEach(img => {
+                    img.loading = 'lazy';
                 });
+            } else {
+                // Cargar polyfill si es necesario
+                // import('loading-attribute-polyfill');
             }
         });
-    }
-});
-</script>
+    </script>
 </body>
 </html>
