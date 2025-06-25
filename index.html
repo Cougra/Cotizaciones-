@@ -9,17 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COUGRA - Fotografía y Video</title>
     <style>
-
-
-
-/* Agrega esto a tu CSS existente */
-
-
-        
-
-
-
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -41,23 +30,17 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
-            will-change: transform; /* Mejora el rendimiento de la animación */
+            transition: transform 0.4s ease;
         }
-    
-
+        
         nav.scroll-hide {
             transform: translateY(-100%);
         }
-
-/* Esto asegura que los submenús se mantengan funcionales */
-
+        
         .menu {
             display: flex;
             justify-content: center;
             list-style: none;
-             transition: transform 0.3s ease-in-out;
-        
         }
         
         .menu li {
@@ -70,6 +53,7 @@
             text-decoration: none;
             font-size: 1.1rem;
             padding: 10px 15px;
+            display: block;
         }
         
         .menu li a:hover {
@@ -86,8 +70,7 @@
             left: 0;
             list-style: none;
             border-radius: 0 0 4px 4px;
-             transition: transform 0.3s ease-in-out;
-        
+            z-index: 1001;
         }
         
         .menu li:hover .submenu {
@@ -97,12 +80,8 @@
         .submenu li a {
             padding: 10px;
             text-align: left;
-            display: block;
         }
         
-
-
-
         /* Secciones */
         section {
             padding: 100px 20px;
@@ -163,7 +142,7 @@
         p {
             max-width: 600px;
             margin: 0 auto 1.5rem;
-             text-align: center;
+            text-align: center;
         }
         
         hr {
@@ -187,8 +166,7 @@
             margin-top: 2rem;
         }
 
-
-   .paquete {
+        .paquete {
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -201,8 +179,9 @@
 
         .paquete:hover {
             transform: translateY(-5px);
-             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
         .paquete h2 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
@@ -293,7 +272,7 @@
             font-size: 0.8rem;
             font-weight: bold;
         }
-    
+        
         /* Contacto */
         .info-contacto {
             margin-top: 2rem;
@@ -305,28 +284,36 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-
-
-             nav {
+            nav {
                 transition: transform 0.3s ease;
             }
-            .menu {
+            
+            body {
+                padding-top: 60px;
+            }
+            
+            .submenu {
+                display: none;
                 position: static;
                 width: 100%;
-                display: none;
+                background: #333;
             }
             
             .menu li {
-                margin: 5px 0;
-                padding: 10px 0;
+                position: relative;
             }
-            .menu li:hover .submenu,
-            .menu li:focus-within .submenu {
+            
+            .menu > li > a {
+                padding: 15px;
+            }
+            
+            .menu li.active .submenu {
                 display: block;
             }
+            
             .destacado2 {
                 font-size: 2.5rem;
-             }
+            }
             
             .destacado {
                 font-size: 2rem;
@@ -376,7 +363,7 @@
         <h1><span class="destacado2">COUGRA</span></h1>
         <h2><span class="destacado">Fotografía y Video</span></h2>
         
-
+        <hr>
         
         <p>¡Hola!</p>
         <p>Somos un servicio de fotografía y video comprometidos en capturar tus mejores momentos con tus amigos y familiares, ofreciéndote calidad y los mejores paquetes.</p>
@@ -463,69 +450,106 @@
             <p>¡Contáctanos para reservar tu sesión o pedir un presupuesto!</p>
             <p>Email: fotografiacougra@gmail.com</p>
             <p>Teléfono: +52 961 235 1905</p>
-
         </div>
     </section>
 
+    <script>
+        // Control de visibilidad del menú
+        let lastScroll = 0;
+        const navbar = document.querySelector('nav');
+        let menuHiddenByClick = false;
+        let hideTimeout;
 
-
-
-
-
-
-
-
-
-<script>
-let lastScroll = 0;
-const navbar = document.querySelector('nav');
-const menuItems = document.querySelectorAll('.menu li');
-
-// Función para manejar el scroll
-function handleScroll() {
-    const currentScroll = window.pageYOffset;
-    const isMobile = window.innerWidth <= 768; // Ajusta este breakpoint si es necesario
-    
-    if (currentScroll <= 0) {
-        navbar.classList.remove('scroll-hide');
-        return;
-    }
-    
-    // Comportamiento diferente para móviles
-    if (isMobile) {
-        if (currentScroll > 100) { // Solo ocultar después de cierto scroll
+        // Función para ocultar el menú
+        function hideNavbar() {
             navbar.classList.add('scroll-hide');
-        } else {
-            navbar.classList.remove('scroll-hide');
+            menuHiddenByClick = true;
+            
+            // Cerrar todos los submenús
+            document.querySelectorAll('.submenu').forEach(submenu => {
+                submenu.style.display = 'none';
+            });
+            
+            // Limpiar timeout anterior si existe
+            if (hideTimeout) clearTimeout(hideTimeout);
+            
+            // Restablecer después de 1 segundo
+            hideTimeout = setTimeout(() => {
+                menuHiddenByClick = false;
+            }, 1000);
         }
-    } 
-    // Comportamiento para desktop
-    else {
-        if (currentScroll > lastScroll && currentScroll > 50) {
-            navbar.classList.add('scroll-hide');
-        } else if (currentScroll < lastScroll) {
-            navbar.classList.remove('scroll-hide');
-        }
-    }
-    
-    lastScroll = currentScroll;
-}
 
-// Evento de scroll con throttling para mejor rendimiento
-let isScrolling;
-window.addEventListener('scroll', function() {
-    window.clearTimeout(isScrolling);
-    isScrolling = setTimeout(handleScroll, 50);
-}, false);
-
-// Cerrar submenús al tocar fuera en móviles
-document.addEventListener('touchstart', function(e) {
-    if (!e.target.closest('.menu li')) {
-        document.querySelectorAll('.submenu').forEach(submenu => {
-            submenu.style.display = 'none';
+        // Evento de scroll
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                navbar.classList.remove('scroll-hide');
+                return;
+            }
+            
+            if (currentScroll < lastScroll && !menuHiddenByClick) {
+                // Scroll hacia arriba - mostrar menú
+                navbar.classList.remove('scroll-hide');
+            } else if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scroll hacia abajo - ocultar menú (solo si no fue ocultado por click)
+                if (!menuHiddenByClick) {
+                    navbar.classList.add('scroll-hide');
+                }
+            }
+            
+            lastScroll = currentScroll;
         });
-    }
-});
-</script>
+
+        // Clic en cualquier enlace del menú
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Para enlaces de anclaje, ocultar después de un breve retraso
+                if (this.getAttribute('href').startsWith('#')) {
+                    setTimeout(hideNavbar, 300);
+                } else {
+                    hideNavbar();
+                }
+                
+                // Cerrar submenús al hacer clic (para móviles)
+                if (window.innerWidth <= 768) {
+                    const parentLi = this.closest('li');
+                    const submenu = parentLi.querySelector('.submenu');
+                    
+                    if (submenu) {
+                        // Cerrar todos los submenús primero
+                        document.querySelectorAll('.submenu').forEach(sm => {
+                            if (sm !== submenu) sm.style.display = 'none';
+                        });
+                        
+                        // Alternar el submenú actual
+                        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                        
+                        // Prevenir el comportamiento predeterminado solo para elementos con submenú
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+
+        // Cerrar menú al tocar fuera (móviles)
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('nav') && window.innerWidth <= 768) {
+                document.querySelectorAll('.submenu').forEach(submenu => {
+                    submenu.style.display = 'none';
+                });
+            }
+        });
+
+        // Manejar redimensionamiento de pantalla
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                // Restaurar submenús en desktop
+                document.querySelectorAll('.submenu').forEach(submenu => {
+                    submenu.style.display = '';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
