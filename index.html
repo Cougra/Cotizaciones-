@@ -453,103 +453,81 @@
         </div>
     </section>
 
-    <script>
-        // Control de visibilidad del menú
-        let lastScroll = 0;
-        const navbar = document.querySelector('nav');
-        let menuHiddenByClick = false;
-        let hideTimeout;
+ <script>
+// Control de visibilidad del menú
+let lastScroll = 0;
+const navbar = document.querySelector('nav');
 
-        // Función para ocultar el menú
-        function hideNavbar() {
-            navbar.classList.add('scroll-hide');
-            menuHiddenByClick = true;
-            
-            // Cerrar todos los submenús
-            document.querySelectorAll('.submenu').forEach(submenu => {
-                submenu.style.display = 'none';
-            });
-            
-            // Limpiar timeout anterior si existe
-            if (hideTimeout) clearTimeout(hideTimeout);
-            
-            // Restablecer después de 1 segundo
-            hideTimeout = setTimeout(() => {
-                menuHiddenByClick = false;
-            }, 1000);
-        }
+// Función para ocultar el menú
+function hideNavbar() {
+    navbar.classList.add('scroll-hide');
+    setTimeout(() => {
+        navbar.classList.remove('scroll-hide');
+    }, 1000); // Tiempo mínimo que permanecerá oculto (ms)
+}
 
-        // Evento de scroll
-        window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 0) {
-                navbar.classList.remove('scroll-hide');
-                return;
-            }
-            
-            if (currentScroll < lastScroll && !menuHiddenByClick) {
-                // Scroll hacia arriba - mostrar menú
-                navbar.classList.remove('scroll-hide');
-            } else if (currentScroll > lastScroll && currentScroll > 100) {
-                // Scroll hacia abajo - ocultar menú (solo si no fue ocultado por click)
-                if (!menuHiddenByClick) {
-                    navbar.classList.add('scroll-hide');
-                }
-            }
-            
-            lastScroll = currentScroll;
-        });
+// Evento de scroll (comportamiento original)
+window.addEventListener('scroll', function() {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= 0) {
+        navbar.classList.remove('scroll-hide');
+        return;
+    }
+    
+    if (currentScroll < lastScroll) {
+        navbar.classList.remove('scroll-hide');
+    } else {
+        navbar.classList.add('scroll-hide');
+    }
+    
+    lastScroll = currentScroll;
+});
 
-        // Clic en cualquier enlace del menú
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Para enlaces de anclaje, ocultar después de un breve retraso
-                if (this.getAttribute('href').startsWith('#')) {
-                    setTimeout(hideNavbar, 300);
-                } else {
-                    hideNavbar();
-                }
-                
-                // Cerrar submenús al hacer clic (para móviles)
-                if (window.innerWidth <= 768) {
-                    const parentLi = this.closest('li');
-                    const submenu = parentLi.querySelector('.submenu');
+// Solo ocultar al hacer clic en SUBMENÚS (no en items principales)
+document.querySelectorAll('.submenu a').forEach(subItem => {
+    subItem.addEventListener('click', function() {
+        hideNavbar();
+    });
+});
+
+// Manejo de submenús en móviles
+document.addEventListener('DOMContentLoaded', function() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        document.querySelectorAll('.menu > li').forEach(item => {
+            const link = item.querySelector('a');
+            const submenu = item.querySelector('.submenu');
+            
+            if (submenu) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const isOpen = submenu.style.display === 'block';
                     
-                    if (submenu) {
-                        // Cerrar todos los submenús primero
-                        document.querySelectorAll('.submenu').forEach(sm => {
-                            if (sm !== submenu) sm.style.display = 'none';
-                        });
-                        
-                        // Alternar el submenú actual
-                        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-                        
-                        // Prevenir el comportamiento predeterminado solo para elementos con submenú
-                        e.preventDefault();
+                    // Cerrar todos los submenús primero
+                    document.querySelectorAll('.submenu').forEach(sm => {
+                        sm.style.display = 'none';
+                    });
+                    
+                    // Abrir el submenú actual si estaba cerrado
+                    if (!isOpen) {
+                        submenu.style.display = 'block';
                     }
-                }
-            });
+                });
+            }
         });
-
-        // Cerrar menú al tocar fuera (móviles)
+        
+        // Cerrar submenús al tocar fuera
         document.addEventListener('click', function(e) {
-            if (!e.target.closest('nav') && window.innerWidth <= 768) {
+            if (!e.target.closest('nav')) {
                 document.querySelectorAll('.submenu').forEach(submenu => {
                     submenu.style.display = 'none';
                 });
             }
         });
-
-        // Manejar redimensionamiento de pantalla
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                // Restaurar submenús en desktop
-                document.querySelectorAll('.submenu').forEach(submenu => {
-                    submenu.style.display = '';
-                });
-            }
-        });
-    </script>
+    }
+});
+</script>
 </body>
 </html>
