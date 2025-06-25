@@ -41,26 +41,23 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
+            will-change: transform; /* Mejora el rendimiento de la animación */
         }
-        nav.scroll-up {
-            transform: translateY(0);
-        }
+    
 
-        nav.scroll-down {
-             transform: translateY(-100%);
-             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
         nav.scroll-hide {
-    transform: translateY(-100%);
+            transform: translateY(-100%);
         }
 
+/* Esto asegura que los submenús se mantengan funcionales */
 
         .menu {
             display: flex;
             justify-content: center;
             list-style: none;
+             transition: transform 0.3s ease-in-out;
+        
         }
         
         .menu li {
@@ -89,6 +86,8 @@
             left: 0;
             list-style: none;
             border-radius: 0 0 4px 4px;
+             transition: transform 0.3s ease-in-out;
+        
         }
         
         .menu li:hover .submenu {
@@ -101,6 +100,9 @@
             display: block;
         }
         
+
+
+
         /* Secciones */
         section {
             padding: 100px 20px;
@@ -303,18 +305,28 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+
+
+             nav {
+                transition: transform 0.3s ease;
+            }
             .menu {
-                flex-direction: column;
-                align-items: center;
+                position: static;
+                width: 100%;
+                display: none;
             }
             
             .menu li {
                 margin: 5px 0;
+                padding: 10px 0;
             }
-            
+            .menu li:hover .submenu,
+            .menu li:focus-within .submenu {
+                display: block;
+            }
             .destacado2 {
                 font-size: 2.5rem;
-            }
+             }
             
             .destacado {
                 font-size: 2rem;
@@ -389,10 +401,11 @@
                     <p><strong>Incluye:</strong></p>
                     <ul>
                         <li>Video y fotos retocadas en USB</li>
+                        <li>20 Fotos impresas (6x8)</li>
                         <li>Fotos digitales en drive</li>
                     </ul>
                     
-                    <div class="precio">$4,200</div>
+                    <div class="precio">$4,500</div>
                 </div>
                 
                 <!-- Paquete Premiun -->
@@ -464,28 +477,54 @@
 
 
 <script>
-// Agrega esto justo antes del cierre del </body>
 let lastScroll = 0;
 const navbar = document.querySelector('nav');
+const menuItems = document.querySelectorAll('.menu li');
 
-window.addEventListener('scroll', () => {
+// Función para manejar el scroll
+function handleScroll() {
     const currentScroll = window.pageYOffset;
+    const isMobile = window.innerWidth <= 768; // Ajusta este breakpoint si es necesario
     
     if (currentScroll <= 0) {
-        // Estamos en la parte superior de la página
         navbar.classList.remove('scroll-hide');
         return;
     }
     
-    if (currentScroll < lastScroll) { 
-        // Scroll hacia ARRIBA - MOSTRAR menú
-        navbar.classList.remove('scroll-hide');
-    } else if (currentScroll > lastScroll) { 
-        // Scroll hacia ABAJO - OCULTAR menú
-        navbar.classList.add('scroll-hide');
+    // Comportamiento diferente para móviles
+    if (isMobile) {
+        if (currentScroll > 100) { // Solo ocultar después de cierto scroll
+            navbar.classList.add('scroll-hide');
+        } else {
+            navbar.classList.remove('scroll-hide');
+        }
+    } 
+    // Comportamiento para desktop
+    else {
+        if (currentScroll > lastScroll && currentScroll > 50) {
+            navbar.classList.add('scroll-hide');
+        } else if (currentScroll < lastScroll) {
+            navbar.classList.remove('scroll-hide');
+        }
     }
     
     lastScroll = currentScroll;
+}
+
+// Evento de scroll con throttling para mejor rendimiento
+let isScrolling;
+window.addEventListener('scroll', function() {
+    window.clearTimeout(isScrolling);
+    isScrolling = setTimeout(handleScroll, 50);
+}, false);
+
+// Cerrar submenús al tocar fuera en móviles
+document.addEventListener('touchstart', function(e) {
+    if (!e.target.closest('.menu li')) {
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            submenu.style.display = 'none';
+        });
+    }
 });
 </script>
 </body>
