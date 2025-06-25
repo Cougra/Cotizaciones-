@@ -205,22 +205,230 @@ section {
         los mejores paquetes.</p>
 </section>
 
-<style>
-    /* Estilos para el logo en inicio */
-    .logo-inicio {
-        margin-bottom: 20px;
-    }
-    .logo-inicio img {
-        border-radius: 50%; /* Opcional: logo circular */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    }
-</style>
+   <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        
+        /* Estilos para los paquetes */
+        .paquetes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .paquete {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 350px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .paquete:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .paquete h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            text-align: center;
+        }
+        
+        .paquete h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .paquete ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .paquete li {
+            margin-bottom: 12px;
+            position: relative;
+            list-style-type: none;
+            padding-left: 25px;
+        }
+        
+        .paquete li:before {
+            content: "•";
+            color: #d4af37;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .precio {
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0;
+            color: #222;
+        }
+        
+        /* Estilos específicos para cada paquete */
+        .basico h2 {
+            color: #4a6fa5;
+        }
+        
+        .premiun {
+            border: 2px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premiun h2 {
+            color: #d4af37;
+        }
+        
+        .premiun::after {
+            content: "POPULAR";
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #d4af37;
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .platinum {
+            border: 2px solid #e5e4e2;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platinum h2 {
+            color: #e5e4e2;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .platinum::after {
+            content: "RECOMENDADO";
+            position: absolute;
+            top: 30px;
+            right: -35px;
+            background: #e5e4e2;
+            color: #333;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .platinum .precio {
+            color: #333;
+            background: #e5e4e2;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 30px auto;
+        }
+        
+        @media (max-width: 768px) {
+            .paquetes {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .paquete {
+                max-width: 100%;
+            }
+        }
+    </style>
     </section>
 
     <section id="servicios">
-        <h2>Nuestros Servicios</h2>
-        <hr>
-        <p>Ofrecemos sesiones personalizadas para eventos sociales, bodas, cumpleaños y más.</p>
+
+          <div class="paquetes">
+            <!-- Paquete Básico -->
+            <div class="paquete basico">
+                <h2>BÁSICO</h2>
+                <h3>Fotografía y Video</h3>
+                <ul>
+                    <li><strong>Fotos ilimitadas</strong></li>
+                    <li><strong>Grabación de 6 hrs.</strong></li>
+                </ul>
+                
+                <div class="incluye">
+                    <p><strong>Incluye:</strong></p>
+                    <ul>
+                        <li>Video y fotos retocadas en USB</li>
+                        <li>Fotos digitales en drive</li>
+                    </ul>
+                </div>
+                
+                <div class="precio">$4,200</div>
+            </div>
+            
+            <!-- Paquete Premiun -->
+            <div class="paquete premiun">
+                <h2>PREMIUN</h2>
+                <h3>Fotografía y Video</h3>
+                <ul>
+                    <li>Sesión Previa (no incluye lugar)</li>
+                    <li><strong>Fotos ilimitadas</strong></li>
+                    <li><strong>Grabación de 7 hrs:</strong> Maquillaje, peinado, traslado, Misa y protocolo organizado en el salón</li>
+                    <li>+ 1 hora de cobertura gratis</li>
+                    <li>Cuadro 20x24 (pulgadas)</li>
+                    <li>Álbum con 50 fotos impresas</li>
+                    <li>Video y fotos retocadas en USB con estuche de madera</li>
+                </ul>
+                
+                <div class="precio">$7,800</div>
+            </div>
+            
+            <!-- Paquete Platinum -->
+            <div class="paquete platinum">
+                <h2>PLATINUM</h2>
+                <h3>Fotografía y Video</h3>
+                <ul>
+                    <li>Sesión Previa (no incluye lugar)</li>
+                    <li><strong>Fotos ilimitadas</strong></li>
+                    <li><strong>Grabación de 8 hrs:</strong> Maquillaje, peinado, traslado, Misa y protocolo organizado en el salón</li>
+                    <li>+ 1 hora de cobertura gratis</li>
+                    <li>Cuadro 20x28 (pulgadas)</li>
+                    <li>Álbum con 100 fotos impresas</li>
+                    <li>Video y fotos retocadas en USB con estuche de madera</li>
+                    <li>Fotos digitales en drive</li>
+                </ul>
+                
+                <div class="precio">$11,500</div>
+            </div>
+        </div>
+    </div>
+        
     </section>
 
     <section id="contacto">
