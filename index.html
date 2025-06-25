@@ -1,40 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Miltonian&family=Monsieur+La+Doulaise&family=Train+One&display=swap" rel="stylesheet">
-
-
-
-
-<meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Miltonian&family=Monsieur+La+Doulaise&family=Train+One&display=swap" rel="stylesheet">
+    
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COUGRA - Fotografía y Video</title>
     <style>
-
-
-section {
-            padding: 40px 20px !important; /* Reduce el espacio interno */
-            min-height: auto;
-        }
-        h1, h2, p {
-            margin-top: -7rem;
-            margin-bottom: 10px;
-        }
-        hr {
-            margin: 10px auto;
-        }
-        /* Estilos generales */
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
             color: #333;
-            text-align: center;
             line-height: 1.6;
         }
         
@@ -52,8 +36,6 @@ section {
             display: flex;
             justify-content: center;
             list-style: none;
-            margin: 0;
-            padding: 0;
         }
         
         .menu li {
@@ -66,7 +48,6 @@ section {
             text-decoration: none;
             font-size: 1.1rem;
             padding: 10px 15px;
-            display: block;
         }
         
         .menu li a:hover {
@@ -74,7 +55,6 @@ section {
             border-radius: 4px;
         }
         
-        /* Submenú desplegable */
         .submenu {
             display: none;
             position: absolute;
@@ -83,8 +63,6 @@ section {
             top: 100%;
             left: 0;
             list-style: none;
-            padding: 0;
-            margin: 0;
             border-radius: 0 0 4px 4px;
         }
         
@@ -95,6 +73,7 @@ section {
         .submenu li a {
             padding: 10px;
             text-align: left;
+            display: block;
         }
         
         /* Secciones */
@@ -103,142 +82,85 @@ section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
         
-        #inicio { background: #f5f5f5; }
-        #servicios { background: #e8e8e8; }
-        #contacto { background: #dedede; }
-        
-        /* Encabezados y contenido (igual que antes) */
-        h1 {
-            font-size: 3rem;
-            letter-spacing: 0.5rem;
-            margin: 0 0 2rem;
-            color: #000;
+        #inicio { 
+            background: #f5f5f5;
+            padding-top: 80px;
+            justify-content: center;
         }
         
-        h2 {
-            font-size: 1.5rem;
-            font-weight: normal;
-            margin-bottom: 3rem;
-            color: #555;
+        #servicios { 
+            background: #e8e8e8;
+            justify-content: flex-start;
+        }
+        
+        #contacto { 
+            background: #dedede;
+            justify-content: center;
+        }
+        
+        /* Logo */
+        .logo-inicio {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .logo-inicio img {
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 200px;
+            height: auto;
+        }
+        
+        /* Textos */
+        .destacado2 {
+            font-family: 'Train One', cursive;
+            font-size: 4rem;
+            color: #2a2a2a;
+            margin-bottom: 1rem;
+        }
+        
+        .destacado {
+            font-family: 'Monsieur La Doulaise', cursive;
+            font-size: 3rem;
+            color: #2a2a2a;
+            margin-bottom: 2rem;
+        }
+        
+        h1, h2 {
+            margin: 1rem 0;
         }
         
         p {
-            font-size: 1.1rem;
             max-width: 600px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 1.5rem;
         }
         
         hr {
             width: 50px;
             border: 1px solid #999;
-            margin: 3rem auto;
-        }
-    </style>
-</head>
-<body>
-    <!-- Menú de navegación con submenús -->
-    <nav>
-        <ul class="menu">
-            <li><a href="#inicio">Inicio</a></li>
-            
-            <li>
-                <a href="#servicios">Servicios</a>
-                <ul class="submenu">
-                    <li><a href="#servicios">Bodas</a></li>
-                    <li><a href="#servicios">Cumpleaños</a></li>
-                    <li><a href="#servicios">Sesiones Individuales</a></li>
-                </ul>
-            </li>
-            
-            <li>
-                <a href="#contacto">Contacto</a>
-                <ul class="submenu">
-                    <li><a href="#contacto">Email</a></li>
-                    <li><a href="#contacto">WhatsApp</a></li>
-                    <li><a href="#contacto">Formulario</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <section id="inicio">
-
-         <style>
-        /* Estilos para el logo */
-        .logo-inicio {
-            text-align: center;
-            margin: 2rem 0;
-        }
-        .logo-inicio img {
-            border-radius: 50%; /* Opcional: logo circular */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
-        }
-    </style>
-
-    <div class="logo-inicio">
-        <img src="IMG-20250623-WA0065.jpg" alt="COUGRA Logo" width="200">
-    </div>
-    <h1><p class="destacado2">COUGRA</p>
-
-        <style>
-            .destacado2 {
-                font-family: 'Train One'; /* Ejemplo de fuente */
-                font-size: 4rem;
-                color: #2a2a2a;
-            }
-        </style></h1>
-    <h2>  <h1><p class="destacado">Fotografía y Video</p>
-
-        <style>
-            .destacado {
-                font-family: 'Monsieur La Doulaise'; /* Ejemplo de fuente */
-                font-size: 2rem;
-                color: #2a2a2a;
-            }
-        </style></h1></h2>
-    
-    <p>¡Hola!</p>
-    <p>Somos un servicio de fotografía y video comprometidos en capturar tus mejores momentos con tus amigos y familiares, ofreciendote calidad y
-        los mejores paquetes.</p>
-</section>
-
-   <style>
-        /* Estilos generales */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-            padding: 0;
-            margin: 0;
+            margin: 2rem auto;
         }
         
-        .container {
+        /* Paquetes */
+        .paquetes-container {
+            width: 100%;
             max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-             justify-content: center;
+            margin: 0 auto;
         }
         
-        h1 {
-            text-align: center;
-            color: #222;
-            margin-bottom: 40px;
-            font-size: 2.5rem;
-        }
-        
-        /* Estilos para los paquetes */
         .paquetes {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 30px;
+            margin-top: 2rem;
         }
-        
-        .paquete {
+
+
+   .paquete {
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -248,33 +170,30 @@ section {
             transition: all 0.3s ease;
             position: relative;
         }
-        
+
         .paquete:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
+            transform: translateY(-5px);
+             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
         .paquete h2 {
             font-size: 1.8rem;
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
+            margin-bottom: 1rem;
             text-align: center;
         }
         
         .paquete h3 {
             font-size: 1.3rem;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
         
         .paquete ul {
+            margin-bottom: 1.5rem;
             padding-left: 20px;
-            margin-bottom: 20px;
         }
         
         .paquete li {
-            margin-bottom: 12px;
+            margin-bottom: 0.8rem;
             position: relative;
             list-style-type: none;
             padding-left: 25px;
@@ -283,20 +202,18 @@ section {
         .paquete li:before {
             content: "•";
             color: #d4af37;
-            font-weight: bold;
             position: absolute;
             left: 0;
         }
         
         .precio {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: bold;
             text-align: center;
-            margin: 30px 0;
-            color: #222;
+            margin: 1.5rem 0;
         }
         
-        /* Estilos específicos para cada paquete */
+        /* Estilos específicos para paquetes */
         .basico h2 {
             color: #4a6fa5;
         }
@@ -326,8 +243,8 @@ section {
         
         .platinum {
             border: 2px solid #e5e4e2;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
             position: relative;
-            overflow: hidden;
         }
         
         .platinum h2 {
@@ -336,10 +253,10 @@ section {
         }
         
         .platinum::after {
-            content: "RECOMENDADO";
+            content: "PREMIUM";
             position: absolute;
-            top: 30px;
-            right: -35px;
+            top: 15px;
+            right: -30px;
             background: #e5e4e2;
             color: #333;
             padding: 5px 30px;
@@ -348,94 +265,166 @@ section {
             font-weight: bold;
         }
         
-        .platinum .precio {
-            color: #333;
-            background: #e5e4e2;
-            padding: 10px;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 30px auto;
+        /* Contacto */
+        .info-contacto {
+            margin-top: 2rem;
         }
         
+        .info-contacto p {
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .paquetes {
+            .menu {
                 flex-direction: column;
                 align-items: center;
             }
             
-            .paquete {
-                max-width: 100%;
+            .menu li {
+                margin: 5px 0;
+            }
+            
+            .destacado2 {
+                font-size: 2.5rem;
+            }
+            
+            .destacado {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 80px 15px;
+            }
+            
+            .paquetes {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
+</head>
+<body>
+    <!-- Menú de navegación -->
+    <nav>
+        <ul class="menu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li>
+                <a href="#servicios">Servicios</a>
+                <ul class="submenu">
+                    <li><a href="#servicios">Bodas</a></li>
+                    <li><a href="#servicios">Cumpleaños</a></li>
+                    <li><a href="#servicios">Sesiones Individuales</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#contacto">Contacto</a>
+                <ul class="submenu">
+                    <li><a href="#contacto">Email</a></li>
+                    <li><a href="#contacto">WhatsApp</a></li>
+                    <li><a href="#contacto">Formulario</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Sección Inicio -->
+    <section id="inicio">
+        <div class="logo-inicio">
+            <img src="Logo.jpg" alt="COUGRA Logo">
+        </div>
+        
+        <h1><span class="destacado2">COUGRA</span></h1>
+        <h2><span class="destacado">Fotografía y Video</span></h2>
+        
+
+        
+        <p>¡Hola!</p>
+        <p>Somos un servicio de fotografía y video comprometidos en capturar tus mejores momentos con tus amigos y familiares, ofreciéndote calidad y los mejores paquetes.</p>
     </section>
 
+    <!-- Sección Servicios -->
     <section id="servicios">
-
-          <div class="paquetes">
-            <!-- Paquete Básico -->
-            <div class="paquete basico">
-                <h2>BÁSICO</h2>
-                <h3>Fotografía y Video</h3>
-                <ul>
-                    <li><strong>Fotos ilimitadas</strong></li>
-                    <li><strong>Grabación de 6 hrs.</strong></li>
-                </ul>
-                
-                <div class="incluye">
+        <div class="paquetes-container">
+            <h1>Nuestros Paquetes</h1>
+            <hr>
+            
+            <div class="paquetes">
+                <!-- Paquete Básico -->
+                <div class="paquete basico">
+                    <h2>BÁSICO</h2>
+                    <h3>Fotografía y Video</h3>
+                    <ul>
+                        <li><strong>Fotos ilimitadas</strong></li>
+                        <li><strong>Grabación de 6 hrs.</strong></li>
+                    </ul>
+                    
                     <p><strong>Incluye:</strong></p>
                     <ul>
                         <li>Video y fotos retocadas en USB</li>
                         <li>Fotos digitales en drive</li>
                     </ul>
+                    
+                    <div class="precio">$4,200</div>
                 </div>
                 
-                <div class="precio">$4,200</div>
-            </div>
-            
-            <!-- Paquete Premiun -->
-            <div class="paquete premiun">
-                <h2>PREMIUN</h2>
-                <h3>Fotografía y Video</h3>
-                <ul>
-                    <li>Sesión Previa (no incluye lugar)</li>
-                    <li><strong>Fotos ilimitadas</strong></li>
-                    <li><strong>Grabación de 7 hrs:</strong> Maquillaje, peinado, traslado, Misa y protocolo organizado en el salón</li>
-                    <li>+ 1 hora de cobertura gratis</li>
-                    <li>Cuadro 20x24 (pulgadas)</li>
-                    <li>Álbum con 50 fotos impresas</li>
-                    <li>Video y fotos retocadas en USB con estuche de madera</li>
-                </ul>
+                <!-- Paquete Premiun -->
+                <div class="paquete premiun">
+                    <h2>PREMIUN</h2>
+                    <h3>Fotografía y Video</h3>
+                    <ul>
+                        <li>Sesión Previa (no incluye lugar)</li>
+                        <li><strong>Fotos ilimitadas</strong></li>
+                        <li><strong>Grabación de 7 hrs:</strong> Maquillaje, peinado, traslado, Misa y protocolo organizado en el salón</li>
+                        <li>+ 1 hora de cobertura gratis</li>
+                        <li>Cuadro 20x24 (pulgadas)</li>
+                        <li>Álbum con 50 fotos impresas</li>
+                    </ul>
+                    
+                    <p><strong>Incluye:</strong></p>
+                    <ul>
+                        <li>Video y fotos retocadas en USB con estuche de madera</li>
+                    </ul>
+                    
+                    <div class="precio">$7,800</div>
+                </div>
                 
-                <div class="precio">$7,800</div>
-            </div>
-            
-            <!-- Paquete Platinum -->
-            <div class="paquete platinum">
-                <h2>PLATINUM</h2>
-                <h3>Fotografía y Video</h3>
-                <ul>
-                    <li>Sesión Previa (no incluye lugar)</li>
-                    <li><strong>Fotos ilimitadas</strong></li>
-                    <li><strong>Grabación de 8 hrs:</strong> Maquillaje, peinado, traslado, Misa y protocolo organizado en el salón</li>
-                    <li>+ 1 hora de cobertura gratis</li>
-                    <li>Cuadro 20x28 (pulgadas)</li>
-                    <li>Álbum con 100 fotos impresas</li>
-                    <li>Video y fotos retocadas en USB con estuche de madera</li>
-                    <li>Fotos digitales en drive</li>
-                </ul>
-                
-                <div class="precio">$11,500</div>
+                <!-- Paquete Platinum -->
+                <div class="paquete platinum">
+                    <h2>PLATINUM</h2>
+                    <h3>Fotografía y Video</h3>
+                    <ul>
+                        <li>Sesión Previa (no incluye lugar)</li>
+                        <li><strong>Fotos ilimitadas</strong></li>
+                        <li><strong>Grabación de 8 hrs:</strong> Maquillaje, peinado, traslado, Misa y protocolo organizado en el salón</li>
+                        <li>+ 1 hora de cobertura gratis</li>
+                        <li>Cuadro 20x28 (pulgadas)</li>
+                        <li>Álbum con 100 fotos impresas</li>
+                    </ul>
+                    
+                    <p><strong>Incluye:</strong></p>
+                    <ul>
+                        <li>Video y fotos retocadas en USB con estuche de madera</li>
+                        <li>Fotos digitales en drive</li>
+                    </ul>
+                    
+                    <div class="precio">$11,500</div>
+                </div>
             </div>
         </div>
-    </div>
-        
     </section>
 
+    <!-- Sección Contacto -->
     <section id="contacto">
-        <h2>Contacto</h2>
+        <h1>Contacto</h1>
         <hr>
-        <p>¡Contáctanos para reservar tu sesión!</p>
+        
+        <div class="info-contacto">
+            <p>¡Contáctanos para reservar tu sesión o pedir un presupuesto!</p>
+            <p>Email: fotografiacougra@gmail.com</p>
+            <p>Teléfono: +52 961 235 1905</p>
+
+        </div>
     </section>
 </body>
 </html>
