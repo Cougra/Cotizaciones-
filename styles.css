@@ -1,5 +1,4 @@
 
-
         /* Estilos generales */
         body {
             font-family: 'Arial', sans-serif;
@@ -205,6 +204,8 @@
         
         .premiun {
             border: 2px solid #d4af37;
+            position: relative; /* Contenedor relativo para elementos absolutos internos */
+    overflow: hidden; 
         }
         
         .premiun h2 {
@@ -222,30 +223,46 @@
             transform: rotate(45deg);
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 1; /* Asegura que esté sobre el contenido */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra opcional */
+    
+    /* Mejoras opcionales */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
         }
         
-        .platinum {
-            border: 2px solid #e5e4e2;
-            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-        }
+       .platinum {
+    border: 2px solid #e5e4e2;
+    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+    position: relative; /* Contenedor relativo para elementos absolutos internos */
+    overflow: hidden; /* Oculta cualquier exceso del pseudo-elemento */
+}
         
         .platinum h2 {
             color: #e5e4e2;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
         
-        .platinum::after {
-            content: "RECOMENDADO";
-            position: absolute;
-            top: 30px;
-            right: -35px;
-            background: #e5e4e2;
-            color: #333;
-            padding: 5px 30px;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
+       .platinum::after {
+    content: "RECOMENDADO";
+    position: absolute;
+    top: 30px;
+    right: -35px;
+    background: #e5e4e2;
+    color: #333;
+    padding: 5px 30px;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 1; /* Asegura que esté sobre el contenido */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra opcional */
+    
+    /* Mejoras opcionales */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
+}
         
         /* Contacto */
         .info-contacto {
@@ -298,11 +315,48 @@
                 align-items: center;
             }
             
-            .premiun::after,
-            .platinum::after {
-                font-size: 0.7rem;
-                right: -40px;
-                padding: 3px 25px;
+            .premiun::after {
+                top: 15px;
+        right: -30px;
+        font-size: 0.7rem;
+        padding: 4px 25px;
             }
-        }
+            .platinum::after {
+                top: 32px;
+        right: -30px;
+        font-size: 0.7rem;
+        padding: 4px 25px;
+            }
 
+       
+    }
+
+
+        
+/* Estilos para elementos activos del menú */
+.menu li a.active {
+    background-color: #d4af37;
+    color: #000;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.submenu li a.active {
+    background-color: #333;
+    color: #d4af37;
+    border-left: 3px solid #d4af37;
+}
+
+.menu li a.active-parent {
+    background-color: #333;
+    color: #d4af37;
+}
+
+/* Transiciones suaves */
+.menu li a {
+    transition: all 0.3s ease;
+}
+
+.menu li a.active:hover {
+    background-color: #c9a227;
+}
